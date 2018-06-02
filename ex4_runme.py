@@ -78,7 +78,7 @@ if __name__ == '__main__':
         training_error.append(ada_boost.error(X_train, y_train))
 
     training_error_plot, = plot(T_values, training_error, linestyle='--', label='training_error')
-    validation_error_plot, = plot(T_values, validation_error, linestyle='-', label='validation_error')
+    validation_error_plot, = plot(T_values, validation_error, linestyle='--', label='validation_error')
 
     legend(handles=[training_error_plot, validation_error_plot])
 
@@ -88,5 +88,10 @@ if __name__ == '__main__':
     savefig('adaboost.png')
     clf()
 
-    # TODO - run your code for questions 3-5
-    pass
+    # T_values = {1, 5, 10, 100, 200}
+    # T_values = {100}
+    #
+    # for t in T_values:
+    #     ada_boost = AdaBoost(DecisionStump, t)
+    #     ada_boost.train(X_train, y_train)
+    #     decision_boundaries(ada_boost, X_train, y_train)
