@@ -55,7 +55,7 @@ class AdaBoost(object):
             y_pred_t = self.h[t].predict(X)
             y_pred += y_pred_t * self.w[t]
 
-        return [1 if s > 0 else -1 for s in y_pred]
+        return np.asarray([1 if s > 0 else -1 for s in y_pred])
 
     def error(self, X, y):
         """

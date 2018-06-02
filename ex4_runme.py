@@ -67,26 +67,31 @@ if __name__ == '__main__':
     X_train, y_train = _load_data('train')
     X_val, y_val = _load_data('val')
 
-    T_values = range(5, 200, 5)
-    validation_error = []
-    training_error = []
+    # T_values = range(5, 200, 5)
+    # validation_error = []
+    # training_error = []
+    #
+    # for t in T_values:
+    #     ada_boost = AdaBoost(DecisionStump, t)
+    #     ada_boost.train(X_train, y_train)
+    #     validation_error.append(ada_boost.error(X_val, y_val))
+    #     training_error.append(ada_boost.error(X_train, y_train))
+    #
+    # training_error_plot, = plot(T_values, training_error, linestyle='--', label='training_error')
+    # validation_error_plot, = plot(T_values, validation_error, linestyle='-', label='validation_error')
+    #
+    # legend(handles=[training_error_plot, validation_error_plot])
+    #
+    # title('training and validation error vs T values')
+    # xlabel('T values')
+    # ylabel('training and validation error')
+    # savefig('adaboost.png')
+    # clf()
+
+    T_values = {1, 5, 10, 100, 200}
 
     for t in T_values:
         ada_boost = AdaBoost(DecisionStump, t)
+        classifier = h_opt()
         ada_boost.train(X_train, y_train)
-        validation_error.append(ada_boost.error(X_val, y_val))
-        training_error.append(ada_boost.error(X_train, y_train))
-
-    training_error_plot, = plot(T_values, training_error, linestyle='--', label='training_error')
-    validation_error_plot, = plot(T_values, validation_error, linestyle='-', label='validation_error')
-
-    legend(handles=[training_error_plot, validation_error_plot])
-
-    title('training and validation error vs T values')
-    xlabel('T values')
-    ylabel('training and validation error')
-    savefig('adaboost.png')
-    clf()
-
-    # TODO - run your code for questions 3-5
-    pass
+        decision_boundaries(ada_boost, X_train, y_train)
